@@ -15,7 +15,7 @@ public class Trainer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "character_id", nullable = false, unique = true)
-    private long characterId;
+    private Long characterId;
 
     @NotBlank
     @Column(nullable = false)
@@ -36,11 +36,11 @@ public class Trainer {
     public Trainer() {
     }
 
-    public long getCharacterId() {
+    public Long getCharacterId() {
         return characterId;
     }
 
-    public void setCharacterId(long characterId) {
+    public void setCharacterId(Long characterId) {
         this.characterId = characterId;
     }
 

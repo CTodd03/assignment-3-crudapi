@@ -2,7 +2,9 @@ package com.csc340.trainers.trainers;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class TrainerService {
@@ -17,6 +19,12 @@ public class TrainerService {
         return trainerRepository.findAll();
     }
 
+    public Trainer getTrainerById(Long id) {
+        return trainerRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "Trainer not found with id: " + id));
+    }
+
     public List<Trainer> getTrainersByName(String name) {
         return trainerRepository.findByNameContainingIgnoreCase(name);
     }
@@ -26,18 +34,16 @@ public class TrainerService {
     }
 
     public Trainer updateTrainer(Long id, Trainer trainerDetails) {
-        Trainer trainer = trainerRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Trainer not found with id: " + id));
-
+        Trainer trainer = getTrainerById(id);
         trainer.setName(trainerDetails.getName());
+        trainer.setDescription(trainerDetails.getDescription());
+        trainer.setType(trainerDetails.getType());
+        trainer.setStrategy(trainerDetails.getStrategy());
 
         return trainerRepository.save(trainer);
     }
 
     public void deleteTrainer(Long id) {
-        if (!trainerRepository.existsById(id)) {
-            throw new RuntimeException("Trainer not found with id: " + id);
-        }
-        trainerRepository.deleteById(id);
+        trainerRepository.delete(getTrainerById(id));
     }
 }
