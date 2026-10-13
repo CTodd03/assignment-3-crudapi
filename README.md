@@ -34,7 +34,7 @@ Content-Type: application/json
 {
   "description": "TRAINER on ROUTE 109.",
   "name": "TUBER LOLA",
-  "strategy": "I wish I could swim without using an inner tube.",
+  "strategy": "I'm going to try hard!",
   "type": "WATER"
 }
 ```
