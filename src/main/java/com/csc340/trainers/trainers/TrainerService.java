@@ -9,41 +9,47 @@ import org.springframework.web.server.ResponseStatusException;
 @Service
 public class TrainerService {
 
-    private final TrainerRepository trainerRepository;
+    private final TrainerRepository characterRepository;
 
-    public TrainerService(TrainerRepository trainerRepository) {
-        this.trainerRepository = trainerRepository;
+    public TrainerService(TrainerRepository characterRepository) {
+        this.characterRepository = characterRepository;
     }
 
-    public List<Trainer> getAllTrainers() {
-        return trainerRepository.findAll();
+    public List<Trainer> getCharacters(String type, String name) {
+        if (type != null && !type.isBlank() && name != null && !name.isBlank()) {
+            return characterRepository.findByTypeIgnoreCaseAndNameContainingIgnoreCase(type, name);
+        }
+        if (type != null && !type.isBlank()) {
+            return characterRepository.findByTypeIgnoreCase(type);
+        }
+        if (name != null && !name.isBlank()) {
+            return characterRepository.findByNameContainingIgnoreCase(name);
+        }
+        return characterRepository.findAll();
     }
 
-    public Trainer getTrainerById(Long id) {
-        return trainerRepository.findById(id)
+    public Trainer getCharacterById(Long id) {
+        return characterRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(
-                        HttpStatus.NOT_FOUND, "Trainer not found with id: " + id));
+                        HttpStatus.NOT_FOUND, "Character not found with id: " + id));
     }
 
-    public List<Trainer> getTrainersByName(String name) {
-        return trainerRepository.findByNameContainingIgnoreCase(name);
+    public Trainer createCharacter(Trainer character) {
+        character.setCharacterId(null);
+        return characterRepository.save(character);
     }
 
-    public Trainer createTrainer(Trainer trainer) {
-        return trainerRepository.save(trainer);
+    public Trainer updateCharacter(Long id, Trainer characterDetails) {
+        Trainer character = getCharacterById(id);
+        character.setName(characterDetails.getName());
+        character.setDescription(characterDetails.getDescription());
+        character.setType(characterDetails.getType());
+        character.setStrategy(characterDetails.getStrategy());
+
+        return characterRepository.save(character);
     }
 
-    public Trainer updateTrainer(Long id, Trainer trainerDetails) {
-        Trainer trainer = getTrainerById(id);
-        trainer.setName(trainerDetails.getName());
-        trainer.setDescription(trainerDetails.getDescription());
-        trainer.setType(trainerDetails.getType());
-        trainer.setStrategy(trainerDetails.getStrategy());
-
-        return trainerRepository.save(trainer);
-    }
-
-    public void deleteTrainer(Long id) {
-        trainerRepository.delete(getTrainerById(id));
+    public void deleteCharacter(Long id) {
+        characterRepository.delete(getCharacterById(id));
     }
 }
