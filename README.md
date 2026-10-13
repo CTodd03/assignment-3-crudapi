@@ -5,11 +5,11 @@ A RESTful CRUD API for fictional characters from the Assignment 2 website. In th
 
 ## Entity Attributes
 
-characterId
-Name
-Description
-Type (The type of Pokémon they use)
-Strategy - A short blurb from the character i.e. Trainer's Eyes from Gen 3.
+- characterId
+- Name
+- Description
+- Type (The type of Pokémon they use)
+- Strategy - A short blurb from the character i.e. Trainer's Eyes from Gen 3.
 
 ## Endpoints
 
