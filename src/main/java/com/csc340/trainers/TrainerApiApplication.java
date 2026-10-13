@@ -1,13 +1,13 @@
-package com.example.demo;
+package com.csc340.trainers;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DemoApplication {
+public class TrainerApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(TrainerApiApplication.class, args);
 	}
 
 }
