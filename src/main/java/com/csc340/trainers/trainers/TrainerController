@@ -1,0 +1,59 @@
+package com.csc340.trainers.trainers;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
+
+@RestController
+@RequestMapping("/api/trainers")
+public class TrainerController {
+
+    private final List<String> trainers = new ArrayList<>();
+
+    @GetMapping
+    public List<String> getAllTrainers() {
+        return trainers;
+    }
+
+    @GetMapping("/{id}")
+    public String getTrainerById(@PathVariable int id) {
+        if (id >= 0 && id < trainers.size()) {
+            return trainers.get(id);
+        }
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Trainer not found");
+    }
+
+    @PostMapping
+    public String createTrainer(@RequestBody String trainer) {
+        trainers.add(trainer);
+        return trainer;
+    }
+
+    @PutMapping("/{id}")
+    public String updateTrainer(@PathVariable int id, @RequestBody String trainer) {
+        if (id >= 0 && id < trainers.size()) {
+            trainers.set(id, trainer);
+            return trainer;
+        }
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Trainer not found");
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteTrainer(@PathVariable int id) {
+        if (id >= 0 && id < trainers.size()) {
+            trainers.remove(id);
+            return;
+        }
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Trainer not found");
+    }
+}

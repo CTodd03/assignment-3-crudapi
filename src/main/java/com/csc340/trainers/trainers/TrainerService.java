@@ -30,8 +30,6 @@ public class TrainerService {
                 .orElseThrow(() -> new RuntimeException("Trainer not found with id: " + id));
 
         trainer.setName(trainerDetails.getName());
-        trainer.setAge(trainerDetails.getAge());
-        trainer.setSpecialty(trainerDetails.getSpecialty());
 
         return trainerRepository.save(trainer);
     }
