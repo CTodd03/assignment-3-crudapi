@@ -66,7 +66,7 @@
 </#assign>
 <@layout.page title="Character Details" pageStyles=pageStyles activePage="details">
 	<main>
-		<img class="character-image" src="/detailsimage.png" alt="${character.name}">
+		<img class="character-image" src="${character.imageUrl!''}" alt="${character.name}">
 		<section>
 			<h2>${character.name}</h2>
 			<p class="intro">${character.description}</p>

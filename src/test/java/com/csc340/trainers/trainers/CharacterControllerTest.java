@@ -45,7 +45,8 @@ class CharacterControllerTest {
 
         mockMvc.perform(get("/api/characters/1"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.characterId").value(1));
+                .andExpect(jsonPath("$.characterId").value(1))
+                .andExpect(jsonPath("$.imageUrl").value("/brendan_image.png"));
     }
 
     @Test
@@ -56,7 +57,8 @@ class CharacterControllerTest {
                         .contentType("application/json")
                         .content(characterJson()))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.characterId").value(1));
+                .andExpect(jsonPath("$.characterId").value(1))
+                .andExpect(jsonPath("$.imageUrl").value("/brendan_image.png"));
     }
 
     @Test
@@ -95,6 +97,7 @@ class CharacterControllerTest {
         character.setDescription("Wizard");
         character.setType("wizard");
         character.setStrategy("Magic");
+        character.setImageUrl("/brendan_image.png");
         return character;
     }
 
@@ -104,7 +107,8 @@ class CharacterControllerTest {
                   "name": "Merlin",
                   "description": "Wizard",
                   "type": "wizard",
-                  "strategy": "Magic"
+                  "strategy": "Magic",
+                  "imageUrl": "/brendan_image.png"
                 }
                 """;
     }

@@ -52,7 +52,7 @@
 			<#list characters as character>
 				<a class="card-link" href="/characters/${character.characterId}">
 					<article class="card">
-						<img src="/detailsimage.png" alt="${character.name}">
+						<img src="${character.imageUrl!''}" alt="${character.name}">
 						<div class="card-content">
 							<div class="role">${character.type}</div>
 							<h2>${character.name}</h2>

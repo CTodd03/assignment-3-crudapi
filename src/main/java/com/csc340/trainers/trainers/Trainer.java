@@ -33,6 +33,9 @@ public class Trainer {
     @Column(nullable = false)
     private String strategy;
 
+    @NotBlank
+    private String imageUrl;
+
     public Trainer() {
     }
 
@@ -74,5 +77,13 @@ public class Trainer {
 
     public void setStrategy(String strategy) {
         this.strategy = strategy;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

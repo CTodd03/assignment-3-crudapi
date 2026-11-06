@@ -58,6 +58,9 @@
 			<label for="strategy">Strategy</label>
 			<textarea id="strategy" name="strategy" required>${character.strategy!''}</textarea>
 
+			<label for="imageUrl">Image URL</label>
+			<input type="text" id="imageUrl" name="imageUrl" value="${character.imageUrl!''}" required>
+
 			<button type="submit"><#if character.characterId??>Save Changes<#else>Add TRAINER</#if></button>
 		</form>
 	</main>

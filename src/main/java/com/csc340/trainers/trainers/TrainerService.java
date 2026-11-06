@@ -45,6 +45,7 @@ public class TrainerService {
         character.setDescription(characterDetails.getDescription());
         character.setType(characterDetails.getType());
         character.setStrategy(characterDetails.getStrategy());
+        character.setImageUrl(characterDetails.getImageUrl());
 
         return characterRepository.save(character);
     }
