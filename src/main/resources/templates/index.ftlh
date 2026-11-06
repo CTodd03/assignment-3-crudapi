@@ -41,8 +41,8 @@
 		<h1>HOENN REGION TRAINER REGISTRY</h1>
 		<p>A database of TRAINERS from the HOENN region.</p>
 		<form class="search-form" action="/" method="get">
-			<input class="search" type="search" name="name" value="${(name!'')?html}" placeholder="Search by name..." aria-label="Search by name">
-			<input class="search" type="search" name="category" value="${(category!'')?html}" placeholder="Filter by category..." aria-label="Filter by category">
+			<input class="search" type="search" name="name" value="${name!''}" placeholder="Search by name..." aria-label="Search by name">
+			<input class="search" type="search" name="category" value="${category!''}" placeholder="Filter by category..." aria-label="Filter by category">
 			<button type="submit">Search</button>
 		</form>
 	</header>
@@ -52,11 +52,11 @@
 			<#list characters as character>
 				<a class="card-link" href="/characters/${character.characterId}">
 					<article class="card">
-						<img src="/detailsimage.png" alt="${character.name?html}">
+						<img src="/detailsimage.png" alt="${character.name}">
 						<div class="card-content">
-							<div class="role">${character.type?html}</div>
-							<h2>${character.name?html}</h2>
-							<p>${character.description?html}</p>
+							<div class="role">${character.type}</div>
+							<h2>${character.name}</h2>
+							<p>${character.description}</p>
 						</div>
 					</article>
 				</a>

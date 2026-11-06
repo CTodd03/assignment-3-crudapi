@@ -66,15 +66,15 @@
 </#assign>
 <@layout.page title="Character Details" pageStyles=pageStyles activePage="details">
 	<main>
-		<img class="character-image" src="/detailsimage.png" alt="${character.name?html}">
+		<img class="character-image" src="/detailsimage.png" alt="${character.name}">
 		<section>
-			<h2>${character.name?html}</h2>
-			<p class="intro">${character.description?html}</p>
+			<h2>${character.name}</h2>
+			<p class="intro">${character.description}</p>
 			<h3>Category</h3>
-			<p>${character.type?html}</p>
+			<p>${character.type}</p>
 
 			<h3>Strategy</h3>
-			<p>${character.strategy?html}</p>
+			<p>${character.strategy}</p>
 
 			<div class="details-actions">
 				<a href="/characters/${character.characterId}/edit">Edit</a>

@@ -40,23 +40,23 @@
 				<p>Please correct the following:</p>
 				<ul>
 					<#list validationErrors as error>
-						<li>${error.defaultMessage?html}</li>
+						<li>${error.defaultMessage}</li>
 					</#list>
 				</ul>
 			</div>
 		</#if>
 		<form method="post" action="<#if character.characterId??>/characters/${character.characterId}<#else>/characters</#if>">
 			<label for="name">Name</label>
-			<input type="text" id="name" name="name" value="${(character.name!'')?html}" required>
+			<input type="text" id="name" name="name" value="${character.name!''}" required>
 
 			<label for="description">Description</label>
-			<textarea id="description" name="description" required>${(character.description!'')?html}</textarea>
+			<textarea id="description" name="description" required>${character.description!''}</textarea>
 
 			<label for="type">Category</label>
-			<input type="text" id="type" name="type" value="${(character.type!'')?html}" required>
+			<input type="text" id="type" name="type" value="${character.type!''}" required>
 
 			<label for="strategy">Strategy</label>
-			<textarea id="strategy" name="strategy" required>${(character.strategy!'')?html}</textarea>
+			<textarea id="strategy" name="strategy" required>${character.strategy!''}</textarea>
 
 			<button type="submit"><#if character.characterId??>Save Changes<#else>Add TRAINER</#if></button>
 		</form>
